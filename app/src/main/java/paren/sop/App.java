@@ -1,6 +1,7 @@
 package paren.sop;
 
 import java.util.Stack;
+import javax.swing.JOptionPane;
 
 public class App {
 
@@ -8,15 +9,20 @@ public class App {
 
     Stack P = new Stack();
 
-    String valid_expression = "((((((((((()))))))))))";
-    String invalid_expression = "((((((((())))))))";
+    String user_input =
+      JOptionPane.showInputDialog("Digite a sequência de parênteses:");
+    char[] user_expression = user_input.toCharArray();
 
-    boolean valid_output = evaluateExpression(P, valid_expression);
-    boolean invalid_output = evaluateExpression(P, invalid_expression);
+    boolean user_evaluation = evaluateExpression(P, user_expression);
 
-    System.out.println("valid_output: " + valid_output);
-    System.out.println("invalid_output: " + invalid_output);
+    String user_message;
 
+    if (user_evaluation == true)
+      user_message = "Expressão válida.";
+    else
+      user_message = "Expressão inválida.";
+
+    JOptionPane.showMessageDialog(null, user_message);
   }
 
   // Criar a função pop(P, sym)
@@ -29,12 +35,12 @@ public class App {
   // parâmetro: a pilha P
   public static char top(Stack p) { return (char) p.peek(); }
 
-  public static boolean evaluateExpression(Stack P, String expression) {
+  public static boolean evaluateExpression(Stack P, char[] expression) {
 
     // Para cada caractere sym na expressão (percorrendo da esq. para direita) repita:
-    for (int i = 0; i < expression.length(); i++) {
+    for (int i = 0; i < expression.length; i++) {
 
-      char sym = expression.charAt(i);
+      char sym = expression[i];
 
       // 5.1 Se sym é um parêntesis esquerdo
       if (sym == '(') {
@@ -53,7 +59,7 @@ public class App {
         char left = top(P);
         P.pop();
 
-        // 5.2.3 Se left e sym não são parêntesis complementares, termine com false.
+        // 5.2.3 Se left e sym não são complementares, termine com false.
         if (left == sym) {
           return false;
 

@@ -1,6 +1,6 @@
 while true; do
   clear
-  gradle test --rerun --fail-fast
+  gradle test --rerun --fail-fast &&
   gradle run
   echo
   inotifywait -r -e modify .

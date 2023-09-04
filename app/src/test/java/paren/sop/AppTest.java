@@ -29,42 +29,42 @@ class AppTest {
     @Test void evaluateExpressionReturnsFalseIfFirstCharacterIsASingleClosingParenthesis() {
         App app = new App();
         Stack p = new Stack();
-        String invalid_expression = ")";
+        char[] invalid_expression = ")".toCharArray();
         assertFalse(app.evaluateExpression(p, invalid_expression));
     }
 
     @Test void evaluateExpressionReturnsFalseIfFirstCharacterIsASingleOpeningParenthesis() {
         App app = new App();
         Stack p = new Stack();
-        String invalid_expression = "(";
+        char[] invalid_expression = "(".toCharArray();
         assertFalse(app.evaluateExpression(p, invalid_expression));
     }
 
     @Test void evaluateExpressionReturnsFalseForInvalidTinyExpression() {
         App app = new App();
         Stack p = new Stack();
-        String invalid_expression = "(()";
+        char[] invalid_expression = "(()".toCharArray();
         assertFalse(app.evaluateExpression(p, invalid_expression));
     }
 
     @Test void evaluateExpressionReturnsFalseForInvalidLongExpression() {
         App app = new App();
         Stack p = new Stack();
-        String invalid_expression = "((((((((())))))))";
+        char[] invalid_expression = "((((((((())))))))".toCharArray();
         assertFalse(app.evaluateExpression(p, invalid_expression));
     }
 
     @Test void evaluateExpressionReturnsTrueForValidTinyExpression() {
         App app = new App();
         Stack p = new Stack();
-        String valid_expression = "()";
+        char[] valid_expression = "()".toCharArray();
         assertTrue(app.evaluateExpression(p, valid_expression));
     }
 
     @Test void evaluateExpressionReturnsTrueForValidLongExpression() {
         App app = new App();
         Stack p = new Stack();
-        String valid_expression = "((((((((((()))))))))))";
+        char[] valid_expression = "((((((((((()))))))))))".toCharArray();
         assertTrue(app.evaluateExpression(p, valid_expression));
     }
 }
